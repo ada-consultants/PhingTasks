@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ADAFramework" default="deploy" basedir=".">
+	
+	<path id="tasks.class.path">
+		<pathelement dir="../src/php/" />
+	</path>
+
+	<taskdef classname="ADA.Phing.Task.CloudfrontCreateTask" name="cloudfront-create" classpathref="tasks.class.path" />
+	<taskdef classname="ADA.Phing.Task.CloudfrontInvalidateTask" name="cloudfront-invalidate" classpathref="tasks.class.path" />
+	<taskdef classname="ADA.Phing.Task.CloudfrontInvalidateStatusTask" name="cloudfront-invalidate-status" classpathref="tasks.class.path" />
+	<taskdef classname="ADA.Phing.Task.WhatHaveChangedTask" name="what-have-changed" classpathref="tasks.class.path" />
+	
+	<property file="amazon.properties" />
+	
+	<target name="deploy">
+		<echo msg="Targets available :" />
+		<echo msg=" * create-distribution" />
+	</target>
+		
+	<target name="create-distribution" description="Create a distribution on Amazon Cloudfront">
+		<cloudfront-create callerReference="assets.www.prome-web.com" domainProperty="distribution.domain" distributionIdProperty="distribution.id">
+			<origin dnsname="www.prome-web.com" />
+		</cloudfront-create>
+		
+		<echo msg="Domain: ${distribution.domain}" />
+		<echo msg="Id: ${distribution.id}" />
+	</target>
+	
+	<target name="invalidate-distribution" description="Invalidates files in the distribution">
+		<cloudfront-invalidate distributionId="${distribution.id}" callerReference="context" invalidationBatchIdProperty="invalidation.batch.id">
+			<pathlist>
+				/test.js
+			</pathlist>
+		</cloudfront-invalidate>
+		
+		<echo msg="Invalidation batch id: ${invalidation.batch.id}" />
+	</target>
+	
+	<target name="invalidate-distribution-status" description="Gets the distribution invalidation status">
+		<cloudfront-invalidate-status distributionId="${distribution.id}" invalidationId="${invalidation.batch.id}" statusProperty="invalidation.status" responseProperty="invalidation.response" />
+		
+		<echo msg="Invalidation status: ${invalidation.status}" />
+		<echo msg="Invalidation response: ${invalidation.response}" />
+	</target>
+	
+	<target name="what-have-changed" description="Find what files have been modified or deleted between two paths">
+		<what-have-changed oldVersionPath="../src/php" currentVersionPath="current-version" changesProperty="changes.list" />
+		
+		<echo msg="Changes : ${changes.list}" />
+	</target>
+	
+	<target name="invalidate-with-changes" description="Invalidates a distribution with the changes computed from test directory">
+		<what-have-changed oldVersionPath="../src/php" currentVersionPath="current-version" changesProperty="changes.list" />
+		
+		<cloudfront-invalidate distributionId="${distribution.id}" callerReference="test" invalidationBatchIdProperty="invalidation.batch.id">
+			<pathlist property="changes.list" />
+		</cloudfront-invalidate>
+		
+		<echo msg="Invalidation batch id: ${invalidation.batch.id}" />
+	</target>
+	
+</project>
