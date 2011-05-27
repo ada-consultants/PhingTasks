@@ -3,10 +3,10 @@
     http://pear.php.net/dtd/tasks-1.0.xsd
     http://pear.php.net/dtd/package-2.0
     http://pear.php.net/dtd/package-2.0.xsd">
- <name>INeedBackup</name>
+ <name>PhingTasks</name>
  <channel>pear.ada-consult.com</channel>
- <summary>I need backup is a tool that takes backup of a database.</summary>
- <description>I need backup is a tool that takes backup of a database and organize the SQL files in a stack for future restore.</description>
+ <summary>Phing tasks used at ADA Consultants</summary>
+ <description>Collection of Phing tasks used to create build file at ADA Consultants Inc.</description>
  <lead>
   <name>Sylvain Filteau</name>
   <user>cidsphere</user>
@@ -27,22 +27,13 @@
  <notes>-</notes>
  <contents>
   <dir name="/">
-   <file baseinstalldir="/" name="need-backup.php" role="script" />
-   <file baseinstalldir="/" name="need-restore.php" role="script" />
-   <file baseinstalldir="/" name="INB/ConfigManager.php" role="php" />
-   <file baseinstalldir="/" name="INB/Shell.php" role="php" />
-   <file baseinstalldir="/" name="INB/Command/ArgumentException.php" role="php" />
-   <file baseinstalldir="/" name="INB/Command/Backup.php" role="php" />
-   <file baseinstalldir="/" name="INB/Command/CommandAbstract.php" role="php" />
-   <file baseinstalldir="/" name="INB/Command/ConfigurationException.php" role="php" />
-   <file baseinstalldir="/" name="INB/Command/Restore.php" role="php" />
-   <file baseinstalldir="/" name="INB/Command/StorageException.php" role="php" />
-   <file baseinstalldir="/" name="INB/Database/Database.php" role="php" />
-   <file baseinstalldir="/" name="INB/Database/Element.php" role="php" />
-   <file baseinstalldir="/" name="INB/Database/Stack.php" role="php" />
-   <file baseinstalldir="/" name="INB/Database/Adapter/AdapterAbstract.php" role="php" />
-   <file baseinstalldir="/" name="INB/Database/Adapter/AdapterFactory.php" role="php" />
-   <file baseinstalldir="/" name="INB/Database/Adapter/Json.php" role="php" />
+   <file baseinstalldir="/" name="ADA/Amazon/Authorization.php" role="php" />
+   <file baseinstalldir="/" name="ADA/Amazon/Cloudfront.php" role="php" />
+   <file baseinstalldir="/" name="ADA/Phing/Task/CloudfrontCreateTask.php" role="php" />
+   <file baseinstalldir="/" name="ADA/Phing/Task/CloudfrontInvalidateStatusTask.php" role="php" />
+   <file baseinstalldir="/" name="ADA/Phing/Task/CloudfrontInvalidateTask.php" role="php" />
+   <file baseinstalldir="/" name="ADA/Phing/Task/WhatHaveChangedTask.php" role="php" />
+   <file baseinstalldir="/" name="ADA/Phing/Type/Origin.php" role="php" />
   </dir>
  </contents>
  <dependencies>
@@ -53,6 +44,11 @@
    <pearinstaller>
     <min>1.4.0</min>
    </pearinstaller>
+   <package>
+    <name>WhatHaveChanged</name>
+	<channel>pear.ada-consult.com</channel>
+	<min>0.0.1</min>
+   </package>
   </required>
  </dependencies>
  <phprelease />
