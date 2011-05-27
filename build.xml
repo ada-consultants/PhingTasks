@@ -48,7 +48,6 @@
 		<copy todir="${project.pkgdir}">
 			<filterchain refid="version" />
 			
-			<fileset refid="binfiles"/>
 			<fileset refid="phpfiles"/>
 		</copy>
 		
