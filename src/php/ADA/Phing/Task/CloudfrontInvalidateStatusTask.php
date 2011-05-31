@@ -110,7 +110,7 @@ class CloudfrontInvalidateStatusTask extends Service_Amazon {
 	private function _parseErrorAndFail(XMLReader $xml) {
 		while ($xml->read()) {
 			if ($xml->nodeType == XMLReader::ELEMENT && $xml->name == "Message") {
-				throw new BuildException("Error while creating Amazon Cloudfront distribution : \"{$this->_readXmlText($xml)}\"");
+				throw new BuildException("Error while getting invalidation status of Amazon Cloudfront distribution : \"{$this->_readXmlText($xml)}\"");
 			}
 		}
 	}
