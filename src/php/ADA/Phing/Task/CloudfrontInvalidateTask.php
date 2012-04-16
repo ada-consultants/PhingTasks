@@ -185,7 +185,12 @@ class CloudfrontPathlist extends DataType {
 		// Merging the text of the property and the text included in the tag
 		$all_paths_text = trim(trim($prop_value) . "\n" . $this->_text);
 		
-		$list = array_map("trim", explode("\n", $all_paths_text));
+		$list = array();
+		foreach (explode("\n", $all_paths_text) as $path) {
+			$path = trim($path);
+			$path = str_replace(' ', '+', $path);
+			$list[] = $path;
+		}
 		
 		return $list;
 	}
