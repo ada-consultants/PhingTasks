@@ -29,6 +29,7 @@
   <dir name="/">
    <file baseinstalldir="/" name="ADA/Amazon/Authorization.php" role="php" />
    <file baseinstalldir="/" name="ADA/Amazon/Cloudfront.php" role="php" />
+   <file baseinstalldir="/" name="ADA/Phing/Task/GenerateNsisFileListTask.php" role="php" />
    <file baseinstalldir="/" name="ADA/Phing/Task/CloudfrontCreateTask.php" role="php" />
    <file baseinstalldir="/" name="ADA/Phing/Task/CloudfrontInvalidateStatusTask.php" role="php" />
    <file baseinstalldir="/" name="ADA/Phing/Task/CloudfrontInvalidateTask.php" role="php" />
