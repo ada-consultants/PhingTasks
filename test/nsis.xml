@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ADAFramework" default="test" basedir=".">
+	
+	<path id="tasks.class.path">
+		<pathelement dir="../src/php/" />
+	</path>
+
+	<taskdef classname="ADA.Phing.Task.GenerateNsisFileListTask" name="generate-nsis-filelist" classpathref="tasks.class.path" />
+	
+	<target name="test">
+		<generate-nsis-filelist property="out">
+			<fileset dir=".">
+				<include pattern="**" />
+			</fileset>
+		</generate-nsis-filelist>
+
+		<echo msg="${out}" />
+	</target>
+	
+</project>
