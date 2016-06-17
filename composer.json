@@ -1,0 +1,14 @@
+{
+    "name": "ada-consultants/phing-tasks",
+    "description": "Misc. Task for COMET",
+    "require": {
+        "phing/phing": "2.*"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Sylvain Filteau",
+            "email": "sfilteau@devalto.com"
+        }
+    ]
+}
