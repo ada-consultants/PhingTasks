@@ -2,3 +2,5 @@ test/amazon.properties
 nbproject
 build
 dist
+
+/vendor/
