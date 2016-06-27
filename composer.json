@@ -10,5 +10,11 @@
             "name": "Sylvain Filteau",
             "email": "sfilteau@devalto.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-0": {
+            "ADA": "src/php/"
+        }
+    },
+    "include-path": ["src/php/"]
 }
